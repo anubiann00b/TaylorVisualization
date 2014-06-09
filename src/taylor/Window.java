@@ -6,6 +6,7 @@
 
 package taylor;
 
+import java.awt.Graphics;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -30,7 +31,15 @@ public class Window extends javax.swing.JFrame {
         calc = new Calculator();
         initComponents();
     }
-
+    
+    @Override
+    public void paint(Graphics graphics) {
+        super.paint(graphics);
+        
+        Graphics g = panelGraph.getGraphics();
+        calc.render(g);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +74,11 @@ public class Window extends javax.swing.JFrame {
         );
 
         buttonGraph.setText("Graph");
+        buttonGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGraphActionPerformed(evt);
+            }
+        });
 
         tableValues.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,6 +127,11 @@ public class Window extends javax.swing.JFrame {
         jLabel1.setText("Degree:");
 
         boxAxis.setText("Axis");
+        boxAxis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxAxisActionPerformed(evt);
+            }
+        });
 
         boxGrid.setText("Grid");
         boxGrid.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +141,9 @@ public class Window extends javax.swing.JFrame {
         });
 
         boxCoords.setText("Coordinates");
-
-        fieldEquation.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                fieldEquationPropertyChange(evt);
+        boxCoords.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxCoordsActionPerformed(evt);
             }
         });
 
@@ -181,14 +199,23 @@ public class Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxGridActionPerformed
-        System.out.println(evt.getActionCommand());
-    }//GEN-LAST:event_boxGridActionPerformed
-
-    private void fieldEquationPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fieldEquationPropertyChange
-        System.out.println("Modified: " + fieldEquation.getText());
+    private void buttonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGraphActionPerformed
         calc.setEquation(fieldEquation.getText());
-    }//GEN-LAST:event_fieldEquationPropertyChange
+        repaint();
+    }//GEN-LAST:event_buttonGraphActionPerformed
+
+    private void boxAxisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAxisActionPerformed
+        calc.setAxis(boxAxis.isSelected());
+        repaint();
+    }//GEN-LAST:event_boxAxisActionPerformed
+    private void boxGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxGridActionPerformed
+        calc.setGrid(boxGrid.isSelected());
+        repaint();
+    }//GEN-LAST:event_boxGridActionPerformed
+    private void boxCoordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCoordsActionPerformed
+        calc.setCoords(boxCoords.isSelected());
+        repaint();
+    }//GEN-LAST:event_boxCoordsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAxis;

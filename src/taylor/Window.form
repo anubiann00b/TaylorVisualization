@@ -100,6 +100,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Graph"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGraphActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSlider" name="sliderDegree">
     </Component>
@@ -154,6 +157,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Axis"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxAxisActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxGrid">
       <Properties>
@@ -167,11 +173,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Coordinates"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxCoordsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="fieldEquation">
-      <Events>
-        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="fieldEquationPropertyChange"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
