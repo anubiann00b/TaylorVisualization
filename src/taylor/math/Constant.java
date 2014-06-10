@@ -15,4 +15,9 @@ public class Constant extends Expression {
     public Expression derive() {
         return new Constant(0);
     }
+    
+    @Override
+    public String toString() {
+        return Integer.toString(value);
+    }
 }

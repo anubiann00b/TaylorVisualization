@@ -3,6 +3,16 @@ package taylor.math.operation;
 import taylor.math.Expression;
 
 public abstract class Operation extends Expression {
+
+    public static Expression getOperation(String op, Expression e1, Expression e2) {
+        switch(op) {
+            case "+":
+                return new Addition(e1,e2);
+            
+            default:
+                return null;
+        }
+    }
     
     public Expression exp1;
     public Expression exp2;

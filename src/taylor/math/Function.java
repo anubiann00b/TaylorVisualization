@@ -1,6 +1,7 @@
 package taylor.math;
 
 import java.util.Stack;
+import taylor.math.operation.Operation;
 
 public class Function {
     
@@ -32,9 +33,7 @@ public class Function {
         
         String newEq = newSb.toString();
         
-        Expression e1;
-        Expression e2;
-        Stack<String> stack = new Stack<String>();
+        Stack<String> opStack = new Stack<String>();
         
         String newStr = "";
         
@@ -44,24 +43,45 @@ public class Function {
         
         for (String s : tokens) {
             if (s.equals("(")) {
-                stack.push(s);
+                opStack.push(s);
             } else if (isOperator(s)) {
-                    while (!stack.empty() && (getPrecedence(stack.peek()) <= getPrecedence(s)))
-                        newStr += stack.pop() + " ";
-                stack.push(s);
+                    while (!opStack.empty() && (getPrecedence(opStack.peek()) <= getPrecedence(s)))
+                        newStr += opStack.pop() + " ";
+                opStack.push(s);
             } else if (s.equals(")")) {
-                while (!stack.peek().equals("("))
-                    newStr += stack.pop() + " ";
-                stack.pop();
+                while (!opStack.peek().equals("("))
+                    newStr += opStack.pop() + " ";
+                opStack.pop();
             } else {
                 newStr += s + " ";
             }
         }
         
-        while (!stack.empty())
-            newStr += stack.pop() + " ";
+        while (!opStack.empty())
+            newStr += opStack.pop() + " ";
         
-        System.out.println(newStr);
+        String[] terms = newStr.split(" ");
+        
+        Stack<Expression> termStack = new Stack<Expression>();
+        
+        String currentTerm;
+        
+        for (int i=0;i<terms.length;i++) {
+            currentTerm = terms[i];
+            if (isNumber(currentTerm)) {
+                termStack.add(new Constant(Integer.parseInt(currentTerm)));
+            } else if (isOperator(currentTerm)) {
+                Expression e1 = termStack.pop();
+                Expression e2 = termStack.pop();
+                termStack.push(Operation.getOperation(currentTerm,e1,e2));
+            }
+        }
+        
+        System.out.println(termStack.pop());
+    }
+    
+    public static boolean isNumber(String str) {
+        return str.matches("-?\\d+(\\.\\d+)?");
     }
     
     private int getPrecedence(String s) {

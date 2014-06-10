@@ -15,4 +15,9 @@ public class Variable extends Expression {
     public Expression derive() {
         return new Constant(coefficient);
     }
+    
+    @Override
+    public String toString() {
+        return coefficient + "x";
+    }
 }

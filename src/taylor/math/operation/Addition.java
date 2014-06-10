@@ -17,4 +17,9 @@ public class Addition extends Operation {
     public Expression derive() {
         return new Addition(exp1.derive(),exp2.derive());
     }
+    
+    @Override
+    public String toString() {
+        return exp1 + "+" + exp2;
+    }
 }
