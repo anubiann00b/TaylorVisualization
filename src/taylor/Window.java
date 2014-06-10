@@ -205,15 +205,15 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonGraphActionPerformed
 
     private void boxAxisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAxisActionPerformed
-        calc.setAxis(boxAxis.isSelected());
+        calc.axis = boxAxis.isSelected();
         repaint();
     }//GEN-LAST:event_boxAxisActionPerformed
     private void boxGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxGridActionPerformed
-        calc.setGrid(boxGrid.isSelected());
+        calc.grid = boxGrid.isSelected();
         repaint();
     }//GEN-LAST:event_boxGridActionPerformed
     private void boxCoordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCoordsActionPerformed
-        calc.setCoords(boxCoords.isSelected());
+        calc.coords = boxCoords.isSelected();
         repaint();
     }//GEN-LAST:event_boxCoordsActionPerformed
 
