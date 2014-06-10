@@ -1,41 +1,14 @@
 package taylor.math;
 
-public enum Function {
+public class Function {
     
-    CONSTANT {
-        @Override
-        public Term getDerivative(Term t) {
-            return null;
-        }
-    },
-    POLYNOMIAL {
-        @Override
-        public Term getDerivative(Term t) {
-            return null;
-        }
-    },
-    LOG {
-        @Override
-        public Term getDerivative(Term t) {
-            return null;
-        }
-    },
-    SIN {
-        @Override
-        public Term getDerivative(Term t) {
-            return null;
-        }
-    },
-    COS {
-        @Override
-        public Term getDerivative(Term t) {
-            return null;
-        }
-    };
+    public Expression exp;
     
-    public abstract Term getDerivative(Term t);
-    
-    Function() {
+    public Function(String s) {
         
+    }
+    
+    public int getY(int x) {
+        return exp.getY(x);
     }
 }
