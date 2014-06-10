@@ -8,15 +8,29 @@ public class Function {
     public Expression exp;
     
     public Function(String str) {
-        /*
         StringBuilder sb = new StringBuilder();
-        String[] split = s.split(" ");
-        for (String str : split)
-            sb.append(str);
+        String[] split = str.split(" ");
+        for (String s : split)
+            sb.append(s);
         String eq = sb.toString();
-
-        char[] chars = eq.toCharArray();
-        */
+        
+        System.out.println(eq);
+        
+        StringBuilder newSb = new StringBuilder();
+        
+        int len = eq.length();
+        int c = 0;
+        
+        for (int i=0;i<len-1;i++) {
+            newSb.append(eq.charAt(c));
+            if (!Character.isDigit(eq.charAt(c)) || !Character.isDigit(eq.charAt(c+1))) {
+                newSb.append(" ");
+            }
+            c++;
+        }
+        newSb.append(eq.charAt(c));
+        
+        String newEq = newSb.toString();
         
         Expression e1;
         Expression e2;
@@ -24,9 +38,9 @@ public class Function {
         
         String newStr = "";
         
-        String[] tokens = str.split(" ");
+        String[] tokens = newEq.split(" ");
         
-        System.out.println(str);
+        System.out.println(newEq);
         
         for (String s : tokens) {
             if (s.equals("(")) {
@@ -48,6 +62,10 @@ public class Function {
             newStr += stack.pop() + " ";
         
         System.out.println(newStr);
+    }
+    
+    private boolean isOperator(char c) {
+        return operators.indexOf(c) != -1;
     }
     
     public int getY(int x) {
