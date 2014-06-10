@@ -26,7 +26,7 @@ public class Window extends javax.swing.JFrame {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException
                 | IllegalAccessException| UnsupportedLookAndFeelException e) {
-            System.out.println(e);
+            System.out.println("Error loading look and feel: " + e);
         }
         calc = new Calculator();
         initComponents();

@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class Function {
     
-    public static String operators = "*/+-(";
+    public static String[] operators = { "*/","+-","(" };
     public Expression exp;
     
     public Function(String str) {
@@ -45,8 +45,8 @@ public class Function {
         for (String s : tokens) {
             if (s.equals("(")) {
                 stack.push(s);
-            } else if (operators.contains(s)) {
-                    while (!stack.empty() && (operators.indexOf(stack.peek()) <= operators.indexOf(s)))
+            } else if (isOperator(s)) {
+                    while (!stack.empty() && (getPrecedence(stack.peek()) <= getPrecedence(s)))
                         newStr += stack.pop() + " ";
                 stack.push(s);
             } else if (s.equals(")")) {
@@ -64,8 +64,16 @@ public class Function {
         System.out.println(newStr);
     }
     
-    private boolean isOperator(char c) {
-        return operators.indexOf(c) != -1;
+    private int getPrecedence(String s) {
+        for (int i=0;i<operators.length;i++) {
+            if (operators[i].contains(s))
+                return i;
+        }
+        return -1;
+    }
+    
+    private boolean isOperator(String s) {
+        return getPrecedence(s) != -1;
     }
     
     public int getY(int x) {
