@@ -11,11 +11,10 @@ public class Calculator {
     public boolean coords = true;
     
     public Calculator() {
-        oldEquation = null;
         equation = "";
     }
     
-    public void setEquation(String newEquation) { oldEquation = equation; equation = newEquation; }
+    public void setEquation(String newEquation) { equation = newEquation; }
 
     public void render(Graphics g) {
         g.drawRect(0,0,50,50);
