@@ -36,8 +36,7 @@ public class Window extends javax.swing.JFrame {
     public void paint(Graphics graphics) {
         super.paint(graphics);
         
-        Graphics g = panelGraph.getGraphics();
-        calc.render(g);
+        calc.render(panelGraph.getGraphics(),panelGraph.getWidth(),panelGraph.getHeight());
     }
     
     /**

@@ -19,9 +19,9 @@ public class Calculator {
     
     public void setEquation(String newEquation) { equation = newEquation; }
 
-    public void render(Graphics g) {
+    public void render(Graphics g, int width, int height) {
         if (equation != null)
             f = new Function(equation);
-        g.drawRect(0,0,50,50);
+        g.drawRect(0,0,width-1,height-1);
     }
 }
