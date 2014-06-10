@@ -8,6 +8,10 @@ public class Term {
     public int exp;
     public Function op;
     
+    public Term(String s, Operator o) {
+        
+    }
+    
     public Term(Function op, int mult, int exp) {
         this.op = op;
         this.mult = mult;
