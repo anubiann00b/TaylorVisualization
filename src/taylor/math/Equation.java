@@ -6,7 +6,7 @@ import taylor.math.operation.Operation;
 
 public class Equation {
     
-    public static String[] operators = { "*/","+-","(" };
+    public static String[] operators = { "^","*/","+-","(" };
     public static String functions = "sc";
     public Expression exp;
     
@@ -49,7 +49,6 @@ public class Equation {
         String newEq = newSb.toString();
                 
         Stack<String> opStack = new Stack<String>();
-        Stack<String> funcStack = new Stack<String>();
         
         String newStr = "";
         
