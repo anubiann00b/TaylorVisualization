@@ -2,6 +2,7 @@ package taylor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JTable;
 import taylor.math.Equation;
 
 public class Calculator {
@@ -20,6 +21,7 @@ public class Calculator {
     public int sy = -10;
     public int ex = 10;
     public int ey = 10;
+    public int tableStep = 1;
     
     public Graphics g;
     public int w;
@@ -65,5 +67,18 @@ public class Calculator {
     public void drawLineScale(double x1, double y1, double x2, double y2) {
         g.drawLine((int)((x1-sx)*w/(ex-sx)),(int)(h-(y1-sy)*h/(ey-sy)),
                 (int)((x2-sx)*w/(ex-sx)),(int)(h-(y2-sy)*h/(ey-sy)));
+    }
+
+    public void update(JTable t) {
+        int row = 0;
+        for (double i=sx;i<ex;i+=tableStep) {
+            t.setValueAt(i,row,0);
+            
+            if (f != null) {
+                t.setValueAt(f.getY(i),row,1);
+                t.setValueAt(f.derive().getY(i),row,2);
+            }
+            row++;
+        }
     }
 }

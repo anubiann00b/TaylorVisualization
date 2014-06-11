@@ -35,8 +35,8 @@ public class Window extends javax.swing.JFrame {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        
         calc.render(panelGraph.getGraphics(),panelGraph.getWidth(),panelGraph.getHeight());
+        calc.update(tableValues);
     }
     
     /**
