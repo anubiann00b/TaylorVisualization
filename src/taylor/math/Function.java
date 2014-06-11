@@ -71,13 +71,14 @@ public class Function {
             if (isNumber(currentTerm)) {
                 termStack.add(new Constant(Integer.parseInt(currentTerm)));
             } else if (isOperator(currentTerm)) {
-                Expression e1 = termStack.pop();
                 Expression e2 = termStack.pop();
+                Expression e1 = termStack.pop();
                 termStack.push(Operation.getOperation(currentTerm,e1,e2));
             }
         }
         
-        System.out.println(termStack.pop());
+        exp = termStack.pop();
+        System.out.println(exp);
     }
     
     public static boolean isNumber(String str) {

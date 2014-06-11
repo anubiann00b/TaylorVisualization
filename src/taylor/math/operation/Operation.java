@@ -8,7 +8,12 @@ public abstract class Operation extends Expression {
         switch(op) {
             case "+":
                 return new Addition(e1,e2);
-            
+            case "*":
+                return new Multiplication(e1,e2);
+            case "-":
+                return new Subtraction(e1,e2);
+            case "/":
+                return new Division(e1,e2);
             default:
                 return null;
         }
