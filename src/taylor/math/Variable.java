@@ -18,7 +18,7 @@ public class Variable extends Expression {
     
     @Override
     public String toString() {
-        return coefficient + "x";
+        return (coefficient!=1?coefficient:"") + "x";
     }
     
     @Override

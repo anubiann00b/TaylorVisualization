@@ -32,6 +32,10 @@ public class Multiplication extends Operation {
             return new Constant(((Constant)e1).value*((Constant)e2).value);
         if (e1 instanceof Constant && ((Constant)e1).value == 0 || e2 instanceof Constant && ((Constant)e2).value == 0)
             return new Constant(0);
+        if (e1 instanceof Constant && ((Constant)e1).value == 1)
+            return e2;
+        if (e2 instanceof Constant && ((Constant)e2).value == 1)
+            return e1;
         
         return this;
     }
