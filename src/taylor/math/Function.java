@@ -105,7 +105,7 @@ public class Function {
         return getPrecedence(s) != -1;
     }
     
-    public int getY(int x) {
+    public double getY(double x) {
         return exp.getY(x);
     }
 }

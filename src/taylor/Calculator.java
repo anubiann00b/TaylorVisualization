@@ -43,19 +43,18 @@ public class Calculator {
         
         if (f != null) {
             g.setColor(Color.red);
-            int oldY = f.getY(sx);
-            for (int i=sx+1;i<ex;i++) {
-                int y = f.getY(i);
-                drawLineScale(i,y,i-1,oldY);
+            double oldY = f.getY(sx);
+            double step = (ex-sx)/100.0;
+            for (double i=sx+1;i<=ex;i+=step) {
+                double y = f.getY(i);
+                drawLineScale(i,y,i-step,oldY);
                 oldY = y;
             }
         }
     }
     
-    public void drawLineScale(int x1, int y1, int x2, int y2) {
-        g.drawLine((x1-sx)*(w-ex+sx),h-(y1-sy)*(h-ey+sy),(x2-sx)*(w-ex+sx),h-(y2-sy)*(h-ey+sy));
-        //int xs = w/(ex-sx);
-        //int ys = h/(ey-sy);
-        //g.drawLine((x1-sx)*xs,(y1-sy)*ys,(x2-sx)*xs,(y2-sy)*ys);
+    public void drawLineScale(double x1, double y1, double x2, double y2) {
+        g.drawLine((int)((x1-sx)*w/(ex-sx)),(int)(h-(y1-sy)*h/(ey-sy)),
+                (int)((x2-sx)*w/(ex-sx)),(int)(h-(y2-sy)*h/(ey-sy)));
     }
 }

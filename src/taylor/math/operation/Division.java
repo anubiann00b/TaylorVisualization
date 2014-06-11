@@ -9,7 +9,9 @@ public class Division extends Operation {
     }
     
     @Override
-    public int getY(int x) {
+    public double getY(double x) {
+        if (exp2.getY(x) == 0)
+            return exp1.getY(x) > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
         return exp1.getY(x) / exp2.getY(x);
     }
     

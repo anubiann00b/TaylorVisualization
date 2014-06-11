@@ -9,7 +9,7 @@ public class Multiplication extends Operation {
     }
     
     @Override
-    public int getY(int x) {
+    public double getY(double x) {
         return exp1.getY(x) * exp2.getY(x);
     }
     

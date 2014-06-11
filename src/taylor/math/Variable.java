@@ -2,14 +2,14 @@ package taylor.math;
 
 public class Variable extends Expression {
     
-    public int coefficient;
+    public double coefficient;
     
-    public Variable(int newCo) {
+    public Variable(double newCo) {
         coefficient = newCo;
     }
     
     @Override
-    public int getY(int x) { return coefficient*x; }
+    public double getY(double x) { return coefficient*x; }
     
     @Override
     public Expression derive() {
