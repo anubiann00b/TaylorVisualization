@@ -232,6 +232,7 @@ public class Window extends javax.swing.JFrame {
 
     private void sliderDegreePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_sliderDegreePropertyChange
         calc.degree = sliderDegree.getValue();
+        repaint();
     }//GEN-LAST:event_sliderDegreePropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

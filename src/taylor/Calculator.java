@@ -25,6 +25,8 @@ public class Calculator {
     public int w;
     public int h;
     
+    public Color[] colors = { Color.black, Color.red, Color.blue, Color.green, Color.pink};
+    
     public void setEquation(String newEquation) { equation = newEquation; }
 
     public void render(Graphics graphics, int width, int height) {
@@ -32,7 +34,7 @@ public class Calculator {
         h = height;
         g = graphics;
         
-        g.setColor(Color.black);
+        g.setColor(colors[0]);
         g.drawRect(0,0,width-1,height-1);
         
         if (axis) {
@@ -44,24 +46,18 @@ public class Calculator {
             f = new Equation(equation);
         
         if (f != null) {
-            g.setColor(Color.red);
-            double oldY = f.getY(sx);
-            double step = (ex-sx)/1000.0;
-            for (double i=sx+step;i<=ex;i+=step) {
-                double y = f.getY(i);
-                drawLineScale(i,y,i-step,oldY);
-                oldY = y;
-            }
+            Equation fd = new Equation(f);
             
-            Equation fd = f.derive();
-            
-            g.setColor(Color.blue);
-            oldY = fd.getY(sx);
-            step = (ex-sx)/1000.0;
-            for (double i=sx+step;i<=ex;i+=step) {
-                double y = fd.getY(i);
-                drawLineScale(i,y,i-step,oldY);
-                oldY = y;
+            for (int j=0;j<degree;j++) {
+                g.setColor(colors[(j+1)%colors.length]);
+                double oldY = fd.getY(sx);
+                double step = (ex-sx)/1000.0;
+                for (double i=sx+step;i<=ex;i+=step) {
+                    double y = fd.getY(i);
+                    drawLineScale(i,y,i-step,oldY);
+                    oldY = y;
+                }
+                fd = fd.derive();
             }
         }
     }

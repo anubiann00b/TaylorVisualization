@@ -10,6 +10,10 @@ public class Equation {
     public static String functions = "sc";
     public Expression exp;
     
+    public Equation(Equation e) {
+        exp = e.exp;
+    }
+    
     public Equation(Expression e) {
         exp = e;
         System.out.println(exp);
