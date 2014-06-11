@@ -59,7 +59,7 @@ public class Function {
             }
         }
         
-        while (!opStack.empty())
+        while (!opStack.isEmpty())
             newStr += opStack.pop() + " ";
         
         String[] terms = newStr.split(" ");
@@ -81,7 +81,10 @@ public class Function {
             }
         }
         
-        exp = termStack.pop();
+        if (!termStack.isEmpty())
+            exp = termStack.pop();
+        else
+            exp = new Constant(0);
         System.out.println(exp);
     }
     

@@ -45,7 +45,7 @@ public class Calculator {
             g.setColor(Color.red);
             double oldY = f.getY(sx);
             double step = (ex-sx)/100.0;
-            for (double i=sx+1;i<=ex;i+=step) {
+            for (double i=sx+step;i<=ex;i+=step) {
                 double y = f.getY(i);
                 drawLineScale(i,y,i-step,oldY);
                 oldY = y;
