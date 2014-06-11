@@ -14,6 +14,8 @@ public class Calculator {
     public boolean grid = false;
     public boolean coords = true;
     
+    public int degree = 1;
+    
     public int sx = -10;
     public int sy = -10;
     public int ex = 10;
@@ -47,6 +49,17 @@ public class Calculator {
             double step = (ex-sx)/1000.0;
             for (double i=sx+step;i<=ex;i+=step) {
                 double y = f.getY(i);
+                drawLineScale(i,y,i-step,oldY);
+                oldY = y;
+            }
+            
+            Equation fd = f.derive();
+            
+            g.setColor(Color.blue);
+            oldY = fd.getY(sx);
+            step = (ex-sx)/1000.0;
+            for (double i=sx+step;i<=ex;i+=step) {
+                double y = fd.getY(i);
                 drawLineScale(i,y,i-step,oldY);
                 oldY = y;
             }

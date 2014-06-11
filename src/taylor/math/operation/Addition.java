@@ -34,6 +34,10 @@ public class Addition extends Operation {
             return new Constant(((Constant)e1).value+((Constant)e2).value);
         if (e1 instanceof Variable && e2 instanceof Variable)
             return new Variable(((Variable)e1).coefficient+((Variable)e2).coefficient);
+        if (e1 instanceof Constant && ((Constant)e1).value == 0)
+            return e2;
+        if (e2 instanceof Constant && ((Constant)e2).value == 0)
+            return e1;
         
         return this;
     }

@@ -10,6 +10,14 @@ public class Equation {
     public static String functions = "sc";
     public Expression exp;
     
+    public Equation(Expression e) {
+        exp = e;
+        System.out.println(exp);
+        exp = exp.simplify();
+        System.out.println(exp);
+        System.out.println();
+    }
+    
     public Equation(String str) {
         StringBuilder sb = new StringBuilder();
         String[] split = str.split(" ");
@@ -108,6 +116,11 @@ public class Equation {
         System.out.println(exp);
         exp = exp.simplify();
         System.out.println(exp);
+        System.out.println();
+    }
+    
+    public Equation derive() {
+        return new Equation(exp.derive());
     }
     
     public static boolean isVariable(String str) {

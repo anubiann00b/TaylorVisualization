@@ -2,7 +2,6 @@ package taylor.math.operation;
 
 import taylor.math.Constant;
 import taylor.math.Expression;
-import taylor.math.Variable;
 
 public class Division extends Operation {
     
@@ -36,8 +35,8 @@ public class Division extends Operation {
         
         if (e1 instanceof Constant && e2 instanceof Constant)
             return new Constant(((Constant)e1).value/((Constant)e2).value);
-        if (e1 instanceof Variable && e2 instanceof Variable)
-            return new Variable(((Variable)e1).coefficient/((Variable)e2).coefficient);
+        if (e1 instanceof Constant && ((Constant)e1).value == 0)
+            return new Constant(0);
         
         return this;
     }

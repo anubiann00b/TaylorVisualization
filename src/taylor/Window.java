@@ -79,6 +79,19 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
+        sliderDegree.setMajorTickSpacing(2);
+        sliderDegree.setMaximum(10);
+        sliderDegree.setMinorTickSpacing(1);
+        sliderDegree.setPaintLabels(true);
+        sliderDegree.setPaintTicks(true);
+        sliderDegree.setSnapToTicks(true);
+        sliderDegree.setValue(1);
+        sliderDegree.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                sliderDegreePropertyChange(evt);
+            }
+        });
+
         tableValues.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -125,6 +138,7 @@ public class Window extends javax.swing.JFrame {
 
         jLabel1.setText("Degree:");
 
+        boxAxis.setSelected(true);
         boxAxis.setText("Axis");
         boxAxis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,6 +229,10 @@ public class Window extends javax.swing.JFrame {
         calc.coords = boxCoords.isSelected();
         repaint();
     }//GEN-LAST:event_boxCoordsActionPerformed
+
+    private void sliderDegreePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_sliderDegreePropertyChange
+        calc.degree = sliderDegree.getValue();
+    }//GEN-LAST:event_sliderDegreePropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAxis;
