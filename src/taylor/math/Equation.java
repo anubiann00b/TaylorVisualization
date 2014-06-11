@@ -41,6 +41,7 @@ public class Equation {
         String newEq = newSb.toString();
                 
         Stack<String> opStack = new Stack<String>();
+        Stack<String> funcStack = new Stack<String>();
         
         String newStr = "";
         
@@ -61,8 +62,12 @@ public class Equation {
                     newStr += opStack.pop() + " ";
                 opStack.pop();
             } else if (isFunction(s)) {
-                newStr += tokens[i+1] + " " + s + " ";
-                i++;
+                if (tokens[i+1].equals("(")) {
+                    opStack.push(s);
+                } else {
+                    newStr += tokens[i+1] + " " + s + " ";
+                    i++;
+                }
             } else {
                 newStr += s + " ";
             }

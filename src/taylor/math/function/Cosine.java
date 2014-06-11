@@ -17,7 +17,7 @@ public class Cosine extends Function {
     
     @Override
     public double getY(double x) {
-        return Math.cos(x);
+        return Math.cos(e.getY(x));
     }
     
     @Override

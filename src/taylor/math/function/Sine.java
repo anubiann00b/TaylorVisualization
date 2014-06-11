@@ -16,7 +16,7 @@ public class Sine extends Function {
     
     @Override
     public double getY(double x) {
-        return Math.sin(x);
+        return Math.sin(e.getY(x));
     }
     
     @Override
