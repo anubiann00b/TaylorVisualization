@@ -1,14 +1,16 @@
 package taylor.math;
 
 import java.util.Stack;
+import taylor.math.function.Function;
 import taylor.math.operation.Operation;
 
-public class Function {
+public class Equation {
     
     public static String[] operators = { "*/","+-","(" };
+    public static String functions = "sc";
     public Expression exp;
     
-    public Function(String str) {
+    public Equation(String str) {
         StringBuilder sb = new StringBuilder();
         String[] split = str.split(" ");
         for (String s : split)
@@ -18,6 +20,9 @@ public class Function {
         System.out.println(eq);
         
         StringBuilder newSb = new StringBuilder();
+        
+        eq = eq.replace("sin","s");
+        eq = eq.replace("cos","c");
         
         int len = eq.length();
         int c = 0;
@@ -34,7 +39,7 @@ public class Function {
         newSb.append(eq.charAt(c));
         
         String newEq = newSb.toString();
-        
+                
         Stack<String> opStack = new Stack<String>();
         
         String newStr = "";
@@ -43,7 +48,8 @@ public class Function {
         
         System.out.println(newEq);
         
-        for (String s : tokens) {
+        for (int i=0;i<tokens.length;i++) {
+            String s = tokens[i];
             if (s.equals("(")) {
                 opStack.push(s);
             } else if (isOperator(s)) {
@@ -54,6 +60,9 @@ public class Function {
                 while (!opStack.peek().equals("("))
                     newStr += opStack.pop() + " ";
                 opStack.pop();
+            } else if (isFunction(s)) {
+                newStr += tokens[i+1] + " " + s + " ";
+                i++;
             } else {
                 newStr += s + " ";
             }
@@ -61,6 +70,8 @@ public class Function {
         
         while (!opStack.isEmpty())
             newStr += opStack.pop() + " ";
+        
+        System.out.println(newStr);
         
         String[] terms = newStr.split(" ");
         
@@ -78,6 +89,9 @@ public class Function {
                 Expression e2 = termStack.pop();
                 Expression e1 = termStack.pop();
                 termStack.push(Operation.getOperation(currentTerm,e1,e2));
+            } else if (isFunction(currentTerm)) {
+                Expression e = termStack.pop();
+                termStack.push(Function.getFunction(currentTerm,e));
             }
         }
         
@@ -85,6 +99,7 @@ public class Function {
             exp = termStack.pop();
         else
             exp = new Constant(0);
+        
         System.out.println(exp);
     }
     
@@ -94,6 +109,10 @@ public class Function {
     
     public static boolean isNumber(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");
+    }
+    
+    public static boolean isFunction(String str) {
+        return functions.contains(str);
     }
     
     private int getPrecedence(String s) {

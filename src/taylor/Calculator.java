@@ -2,13 +2,13 @@ package taylor;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import taylor.math.Function;
+import taylor.math.Equation;
 
 public class Calculator {
     
     private String equation;
     
-    private Function f;
+    private Equation f;
     
     public boolean axis = true;
     public boolean grid = false;
@@ -39,12 +39,12 @@ public class Calculator {
         }
         
         if (equation != null)
-            f = new Function(equation);
+            f = new Equation(equation);
         
         if (f != null) {
             g.setColor(Color.red);
             double oldY = f.getY(sx);
-            double step = (ex-sx)/100.0;
+            double step = (ex-sx)/1000.0;
             for (double i=sx+step;i<=ex;i+=step) {
                 double y = f.getY(i);
                 drawLineScale(i,y,i-step,oldY);
