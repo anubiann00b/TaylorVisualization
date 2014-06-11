@@ -24,7 +24,9 @@ public class Function {
         
         for (int i=0;i<len-1;i++) {
             newSb.append(eq.charAt(c));
-            if (!Character.isDigit(eq.charAt(c)) || !Character.isDigit(eq.charAt(c+1))) {
+            String s1 = String.valueOf(eq.charAt(c));
+            String s2 = String.valueOf(eq.charAt(c+1));
+            if (!(isNumber(s1) || isVariable(s1)) || !(isNumber(s2) || isVariable(s2))) {
                 newSb.append(" ");
             }
             c++;
@@ -70,6 +72,8 @@ public class Function {
             currentTerm = terms[i];
             if (isNumber(currentTerm)) {
                 termStack.add(new Constant(Integer.parseInt(currentTerm)));
+            } else if (isVariable(currentTerm)) {
+                termStack.add(new Variable(currentTerm.length()==1?1:Integer.parseInt(currentTerm.substring(0,currentTerm.length()-1))));
             } else if (isOperator(currentTerm)) {
                 Expression e2 = termStack.pop();
                 Expression e1 = termStack.pop();
@@ -79,6 +83,10 @@ public class Function {
         
         exp = termStack.pop();
         System.out.println(exp);
+    }
+    
+    public static boolean isVariable(String str) {
+        return str.endsWith("x") && (str.length()==1 || str.substring(0,str.length()-1).matches("-?\\d+(\\.\\d+)?"));
     }
     
     public static boolean isNumber(String str) {

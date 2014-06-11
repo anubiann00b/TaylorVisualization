@@ -28,7 +28,7 @@ public class Calculator {
             int oldY = f.getY(0);
             for (int i=width/100;i<width;i+=width/100) {
                 int y = f.getY(i);
-                g.drawLine(i-width/100,oldY,i,y);
+                g.drawLine(i-width/100,height-oldY,i,height-y);
                 oldY = y;
             }
         }
