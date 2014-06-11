@@ -10,6 +10,8 @@ public abstract class Function extends Expression {
                 return new Sine(e);
             case "c":
                 return new Cosine(e);
+            case "l":
+                return new NaturalLog(e);
             default:
                 return null;
         }

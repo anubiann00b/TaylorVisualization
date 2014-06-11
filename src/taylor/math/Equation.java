@@ -7,7 +7,7 @@ import taylor.math.operation.Operation;
 public class Equation {
     
     public static String[] operators = { "^","*/","+-","(" };
-    public static String functions = "sc";
+    public static String functions = "scl";
     public Expression exp;
     
     public Equation(Equation e) {
@@ -35,6 +35,7 @@ public class Equation {
         
         eq = eq.replace("sin","s");
         eq = eq.replace("cos","c");
+        eq = eq.replace("ln","l");
         
         int len = eq.length();
         int c = 0;
