@@ -106,6 +106,8 @@ public class Equation {
             exp = new Constant(0);
         
         System.out.println(exp);
+        exp = exp.simplify();
+        System.out.println(exp);
     }
     
     public static boolean isVariable(String str) {

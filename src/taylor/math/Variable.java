@@ -20,4 +20,9 @@ public class Variable extends Expression {
     public String toString() {
         return coefficient + "x";
     }
+    
+    @Override
+    public Expression simplify() {
+        return this;
+    }
 }

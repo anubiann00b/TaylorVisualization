@@ -20,4 +20,10 @@ public abstract class Function extends Expression {
     public Function(Expression en) {
         e = en;
     }
+    
+    @Override
+    public Expression simplify() {
+        e = e.simplify();
+        return this;
+    }
 }

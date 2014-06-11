@@ -20,4 +20,9 @@ public class Constant extends Expression {
     public String toString() {
         return Double.toString(value);
     }
+    
+    @Override
+    public Expression simplify() {
+        return this;
+    }
 }
