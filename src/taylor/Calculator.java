@@ -31,7 +31,7 @@ public class Calculator {
     public Color[] colors = { Color.black, Color.red, Color.blue, Color.green, Color.pink};
     
     public void setEquation(String newEquation) { equation = newEquation; }
-
+    
     public void render(Graphics graphics, int width, int height) {
         w = width;
         h = height;
@@ -71,7 +71,7 @@ public class Calculator {
         g.drawLine((int)((x1-sx)*w/(ex-sx)),(int)(h-(y1-sy)*h/(ey-sy)),
                 (int)((x2-sx)*w/(ex-sx)),(int)(h-(y2-sy)*h/(ey-sy)));
     }
-
+    
     public void update(JTable t) {
         int row = 0;
         for (double i=sx;i<ex;i+=tableStep) {
