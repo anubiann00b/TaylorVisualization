@@ -23,6 +23,8 @@ public class Variable extends Expression {
     
     @Override
     public Expression simplify() {
+        if (coefficient == 0)
+            return new Constant(0);
         return this;
     }
 }

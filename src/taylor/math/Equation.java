@@ -16,10 +16,7 @@ public class Equation {
     
     public Equation(Expression e) {
         exp = e;
-        System.out.println(exp);
         exp = exp.simplify();
-        System.out.println(exp);
-        System.out.println();
     }
     
     public Equation(String str) {
@@ -28,8 +25,6 @@ public class Equation {
         for (String s : split)
             sb.append(s);
         String eq = sb.toString();
-        
-        System.out.println(eq);
         
         StringBuilder newSb = new StringBuilder();
         
@@ -59,8 +54,6 @@ public class Equation {
         
         String[] tokens = newEq.split(" ");
         
-        System.out.println(newEq);
-        
         for (int i=0;i<tokens.length;i++) {
             String s = tokens[i];
             if (s.equals("(")) {
@@ -87,8 +80,6 @@ public class Equation {
         
         while (!opStack.isEmpty())
             newStr += opStack.pop() + " ";
-        
-        System.out.println(newStr);
         
         String[] terms = newStr.split(" ");
         
@@ -117,10 +108,7 @@ public class Equation {
         else
             exp = new Constant(0);
         
-        System.out.println(exp);
         exp = exp.simplify();
-        System.out.println(exp);
-        System.out.println();
     }
     
     public Equation derive() {

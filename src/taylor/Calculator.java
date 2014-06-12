@@ -3,6 +3,7 @@ package taylor;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JTable;
+import taylor.math.Constant;
 import taylor.math.Equation;
 
 public class Calculator {
@@ -59,6 +60,8 @@ public class Calculator {
                     drawLineScale(i,y,i-step,oldY);
                     oldY = y;
                 }
+                if (fd.exp.equals(new Constant(0)))
+                    break;
                 fd = fd.derive();
             }
         }
