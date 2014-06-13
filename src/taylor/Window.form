@@ -82,6 +82,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="panelGraph">
+      <Events>
+        <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="panelGraphMouseWheelMoved"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelGraphMousePressed"/>
+        <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="panelGraphMouseDragged"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">

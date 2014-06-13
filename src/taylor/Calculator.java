@@ -18,10 +18,10 @@ public class Calculator {
     
     public int degree = 1;
     
-    public int sx = -10;
-    public int sy = -10;
-    public int ex = 10;
-    public int ey = 10;
+    public double sx = -10;
+    public double sy = -10;
+    public double ex = 10;
+    public double ey = 10;
     public int tableStep = 1;
     
     public Graphics g;
@@ -41,8 +41,8 @@ public class Calculator {
         g.drawRect(0,0,width-1,height-1);
         
         if (axis) {
-            g.drawLine(width/2,0,width/2,height);
-            g.drawLine(0,height/2,width,height/2);
+            drawLineScale(0,sy,0,ey);
+            drawLineScale(sx,0,ex,0);
         }
         
         if (equation != null)
@@ -73,15 +73,29 @@ public class Calculator {
     }
     
     public void update(JTable t) {
-        int row = 0;
-        for (double i=sx;i<ex;i+=tableStep) {
-            t.setValueAt(i,row,0);
+        int x = 0;
+        for (int i=0;i<20;i++) {
+            t.setValueAt(x,i,0);
             
             if (f != null) {
-                t.setValueAt(f.getY(i),row,1);
-                t.setValueAt(f.derive().getY(i),row,2);
+                t.setValueAt(f.getY(x),i,1);
+                t.setValueAt(f.derive().getY(x),i,2);
             }
-            row++;
+            x+=tableStep;
         }
+    }
+    
+    public void zoom(int r) {
+        sx -= r;
+        sy -= r;
+        ex += r;
+        ey += r;
+    }
+    
+    public void pan(int x, int y) {
+        sx += x/20.0;
+        sy -= y/20.0;
+        ex += x/20.0;
+        ey -= y/20.0;
     }
 }

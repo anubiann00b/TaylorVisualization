@@ -61,6 +61,22 @@ public class Window extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        panelGraph.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                panelGraphMouseWheelMoved(evt);
+            }
+        });
+        panelGraph.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelGraphMousePressed(evt);
+            }
+        });
+        panelGraph.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panelGraphMouseDragged(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelGraphLayout = new javax.swing.GroupLayout(panelGraph);
         panelGraph.setLayout(panelGraphLayout);
         panelGraphLayout.setHorizontalGroup(
@@ -234,6 +250,27 @@ public class Window extends javax.swing.JFrame {
         calc.degree = sliderDegree.getValue();
         repaint();
     }//GEN-LAST:event_sliderDegreePropertyChange
+    
+    private int mx;
+    private int my;
+    private boolean h = false;
+    
+    private void panelGraphMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_panelGraphMouseWheelMoved
+        calc.zoom(evt.getWheelRotation());
+        repaint();
+    }//GEN-LAST:event_panelGraphMouseWheelMoved
+
+    private void panelGraphMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGraphMouseDragged
+        calc.pan(mx-evt.getX(),my-evt.getY());
+        mx = evt.getX();
+        my = evt.getY();
+        repaint();
+    }//GEN-LAST:event_panelGraphMouseDragged
+
+    private void panelGraphMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGraphMousePressed
+        mx = evt.getX();
+        my = evt.getY();
+    }//GEN-LAST:event_panelGraphMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAxis;
