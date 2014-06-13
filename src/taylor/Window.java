@@ -258,6 +258,7 @@ public class Window extends javax.swing.JFrame {
     private void panelGraphMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_panelGraphMouseWheelMoved
         calc.zoom(evt.getWheelRotation());
         repaint();
+        calc.update(tableValues);
     }//GEN-LAST:event_panelGraphMouseWheelMoved
 
     private void panelGraphMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGraphMouseDragged
@@ -265,6 +266,7 @@ public class Window extends javax.swing.JFrame {
         mx = evt.getX();
         my = evt.getY();
         repaint();
+        calc.update(tableValues);
     }//GEN-LAST:event_panelGraphMouseDragged
 
     private void panelGraphMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelGraphMousePressed

@@ -73,7 +73,7 @@ public class Calculator {
     }
     
     public void update(JTable t) {
-        int x = 0;
+        double x = sx;
         for (int i=0;i<20;i++) {
             t.setValueAt(x,i,0);
             
@@ -81,7 +81,7 @@ public class Calculator {
                 t.setValueAt(f.getY(x),i,1);
                 t.setValueAt(f.derive().getY(x),i,2);
             }
-            x+=tableStep;
+            x+=(ex-sx)/20;
         }
     }
     
