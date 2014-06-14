@@ -54,6 +54,7 @@ public class Calculator {
             Equation fd = new Equation(f);
             
             for (int j=0;j<degree;j++) {
+                System.out.println(fd);
                 g.setColor(colors[(j+1)%colors.length]);
                 double oldY = fd.getY(sx);
                 double step = (ex-sx)/1000.0;
@@ -64,7 +65,7 @@ public class Calculator {
                 }
                 if (fd.exp.equals(new Constant(0)))
                     break;
-                fd = fd.derive();
+                fd = f.getTaylorPolynomial(j+1,0);
             }
         }
     }

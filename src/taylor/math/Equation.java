@@ -2,6 +2,9 @@ package taylor.math;
 
 import java.util.Stack;
 import taylor.math.function.Function;
+import taylor.math.operation.Addition;
+import taylor.math.operation.Division;
+import taylor.math.operation.Multiplication;
 import taylor.math.operation.Operation;
 
 public class Equation {
@@ -109,6 +112,28 @@ public class Equation {
             exp = new Constant(0);
         
         exp = exp.simplify();
+    }
+    
+    public Equation getTaylorPolynomial(int n, int p) {
+        Expression f = new Constant(0);
+        for (int i=0;i<=n;i++) {
+            Expression d = exp;
+            for (int j=0;j<i;j++)
+                d.derive();
+            Expression e = new Multiplication(new Division(new Constant(d.getY(p)),
+                    new Constant(factorial(n))),new Addition(new Variable(1),new Constant(p)));
+            Expression w = new Addition(f,e);
+            f = w;
+        }
+        return new Equation(f);
+    }
+    
+    
+    
+    public int factorial(int n) {
+        if (n<=1)
+            return 1;
+        return n*factorial(n-1);
     }
     
     public Equation derive() {
