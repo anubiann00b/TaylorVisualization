@@ -65,7 +65,7 @@ public class Calculator {
                 }
                 if (fd.exp.equals(new Constant(0)))
                     break;
-                fd = f.getTaylorPolynomial(j+1,0);
+                fd = f.getTaylorPolynomial(j+1,1);
             }
         }
     }

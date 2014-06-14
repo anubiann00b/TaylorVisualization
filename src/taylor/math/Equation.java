@@ -4,8 +4,10 @@ import java.util.Stack;
 import taylor.math.function.Function;
 import taylor.math.operation.Addition;
 import taylor.math.operation.Division;
+import taylor.math.operation.Exponent;
 import taylor.math.operation.Multiplication;
 import taylor.math.operation.Operation;
+import taylor.math.operation.Subtraction;
 
 public class Equation {
     
@@ -120,20 +122,36 @@ public class Equation {
             Expression d = exp;
             for (int j=0;j<i;j++)
                 d.derive();
-            Expression e = new Multiplication(new Division(new Constant(d.getY(p)),
-                    new Constant(factorial(n))),new Addition(new Variable(1),new Constant(p)));
+            Expression e = 
+                    new Multiplication (
+                        new Division (
+                            new Constant(d.getY(p)),
+                            new Constant(factorial(n))
+                        ),
+                        new Exponent (
+                            new Subtraction (
+                                new Variable(1),
+                                new Constant(p)
+                            ),
+                            new Constant(i)
+                        )
+                    );
             Expression w = new Addition(f,e);
             f = w;
         }
         return new Equation(f);
     }
     
-    
+    @Override
+    public String toString() {
+        return exp.toString();
+    }
     
     public int factorial(int n) {
-        if (n<=1)
-            return 1;
-        return n*factorial(n-1);
+        int r = 1;
+        for (int i=1;i<=n;i++)
+            r = r*i;
+        return r;
     }
     
     public Equation derive() {
