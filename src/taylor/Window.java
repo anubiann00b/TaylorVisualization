@@ -102,6 +102,14 @@ public class Window extends javax.swing.JFrame {
         sliderDegree.setPaintTicks(true);
         sliderDegree.setSnapToTicks(true);
         sliderDegree.setValue(1);
+        sliderDegree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                sliderDegreeMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sliderDegreeMouseClicked(evt);
+            }
+        });
         sliderDegree.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 sliderDegreePropertyChange(evt);
@@ -247,6 +255,8 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_boxCoordsActionPerformed
 
     private void sliderDegreePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_sliderDegreePropertyChange
+        if (calc.degree == sliderDegree.getValue())
+            return;
         calc.degree = sliderDegree.getValue();
         repaint();
     }//GEN-LAST:event_sliderDegreePropertyChange
@@ -273,6 +283,20 @@ public class Window extends javax.swing.JFrame {
         mx = evt.getX();
         my = evt.getY();
     }//GEN-LAST:event_panelGraphMousePressed
+
+    private void sliderDegreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderDegreeMouseClicked
+        if (calc.degree == sliderDegree.getValue())
+            return;
+        calc.degree = sliderDegree.getValue();
+        repaint();
+    }//GEN-LAST:event_sliderDegreeMouseClicked
+
+    private void sliderDegreeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderDegreeMouseReleased
+        if (calc.degree == sliderDegree.getValue())
+            return;
+        calc.degree = sliderDegree.getValue();
+        repaint();
+    }//GEN-LAST:event_sliderDegreeMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAxis;
