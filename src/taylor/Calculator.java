@@ -22,7 +22,7 @@ public class Calculator {
     public double sy = -10;
     public double ex = 10;
     public double ey = 10;
-    public int tableStep = 1;
+    public double tableStep = 1;
     
     public Graphics g;
     public int w;
@@ -39,6 +39,8 @@ public class Calculator {
         
         g.setColor(colors[0]);
         g.drawRect(0,0,width-1,height-1);
+        
+        tableStep = (ex-sx)/20;
         
         if (axis) {
             drawLineScale(0,sy,0,ey);
@@ -81,21 +83,21 @@ public class Calculator {
                 t.setValueAt(f.getY(x),i,1);
                 t.setValueAt(f.derive().getY(x),i,2);
             }
-            x+=(ex-sx)/20;
+            x+=tableStep;
         }
     }
     
     public void zoom(int r) {
-        sx -= r;
-        sy -= r;
-        ex += r;
-        ey += r;
+        sx -= tableStep*r;
+        sy -= tableStep*r;
+        ex += tableStep*r;
+        ey += tableStep*r;
     }
     
     public void pan(int x, int y) {
-        sx += x/20.0;
-        sy -= y/20.0;
-        ex += x/20.0;
-        ey -= y/20.0;
+        sx += tableStep*x/20.0;
+        sy -= tableStep*y/20.0;
+        ex += tableStep*x/20.0;
+        ey -= tableStep*y/20.0;
     }
 }
