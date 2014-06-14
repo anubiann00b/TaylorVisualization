@@ -54,6 +54,8 @@ public class Calculator {
             Equation fd = new Equation(f);
             
             for (int j=0;j<degree;j++) {
+                if (j != 0)
+                    fd = new Equation(f.getTaylorPolynomial(j,1));
                 System.out.println(fd);
                 g.setColor(colors[(j+1)%colors.length]);
                 double oldY = fd.getY(sx);
@@ -65,7 +67,6 @@ public class Calculator {
                 }
                 if (fd.exp.equals(new Constant(0)))
                     break;
-                fd = f.getTaylorPolynomial(j+1,1);
             }
         }
     }
