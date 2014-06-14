@@ -121,7 +121,7 @@ public class Equation {
         for (int i=0;i<=n;i++) {
             Expression d = exp;
             for (int j=0;j<i;j++)
-                d.derive();
+                d = d.derive();
             Expression e = 
                     new Multiplication (
                         new Division (
