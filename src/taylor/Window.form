@@ -40,7 +40,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="boxCoords" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="boxGrid" min="-2" max="-2" attributes="0"/>
+                      <Component id="boxShow" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -75,7 +75,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="boxAxis" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="boxGrid" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="boxShow" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="boxCoords" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="fieldPoint" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -194,12 +194,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxAxisActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="boxGrid">
+    <Component class="javax.swing.JCheckBox" name="boxShow">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Grid"/>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Show All"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxGridActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boxShowActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="boxCoords">

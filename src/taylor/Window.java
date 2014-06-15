@@ -72,7 +72,7 @@ public class Window extends javax.swing.JFrame {
         tableValues = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         boxAxis = new javax.swing.JCheckBox();
-        boxGrid = new javax.swing.JCheckBox();
+        boxShow = new javax.swing.JCheckBox();
         boxCoords = new javax.swing.JCheckBox();
         fieldEquation = new javax.swing.JFormattedTextField();
         fieldPoint = new javax.swing.JTextField();
@@ -189,10 +189,11 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
-        boxGrid.setText("Grid");
-        boxGrid.addActionListener(new java.awt.event.ActionListener() {
+        boxShow.setSelected(true);
+        boxShow.setText("Show All");
+        boxShow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxGridActionPerformed(evt);
+                boxShowActionPerformed(evt);
             }
         });
 
@@ -238,7 +239,7 @@ public class Window extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(boxCoords)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boxGrid))
+                        .addComponent(boxShow))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonGraph)
@@ -266,7 +267,7 @@ public class Window extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(boxAxis)
-                                    .addComponent(boxGrid)
+                                    .addComponent(boxShow)
                                     .addComponent(boxCoords)
                                     .addComponent(jLabel2)
                                     .addComponent(fieldPoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -289,10 +290,10 @@ public class Window extends javax.swing.JFrame {
         calc.axis = boxAxis.isSelected();
         repaint();
     }//GEN-LAST:event_boxAxisActionPerformed
-    private void boxGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxGridActionPerformed
-        calc.grid = boxGrid.isSelected();
+    private void boxShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxShowActionPerformed
+        calc.show = boxShow.isSelected();
         repaint();
-    }//GEN-LAST:event_boxGridActionPerformed
+    }//GEN-LAST:event_boxShowActionPerformed
     private void boxCoordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCoordsActionPerformed
         calc.coords = boxCoords.isSelected();
         repaint();
@@ -365,7 +366,7 @@ public class Window extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAxis;
     private javax.swing.JCheckBox boxCoords;
-    private javax.swing.JCheckBox boxGrid;
+    private javax.swing.JCheckBox boxShow;
     private javax.swing.JButton buttonGraph;
     private javax.swing.JFormattedTextField fieldEquation;
     private javax.swing.JTextField fieldPoint;
