@@ -7,6 +7,9 @@
 package taylor;
 
 import java.awt.Graphics;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -38,6 +41,16 @@ public class Window extends JFrame {
             @Override public void insertUpdate(DocumentEvent e) { fieldPointEvent(); }
             @Override public void removeUpdate(DocumentEvent e) { fieldPointEvent(); }
             @Override public void changedUpdate(DocumentEvent e) { fieldPointEvent(); }
+        });
+        
+        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.addKeyEventDispatcher(new KeyEventDispatcher() {
+            @Override
+            public boolean dispatchKeyEvent(KeyEvent e) {
+                if (e.getKeyCode()==KeyEvent.VK_F1 && e.getID()==KeyEvent.KEY_PRESSED)
+                    displayHelp();
+                return true;
+            }
         });
     }
     
