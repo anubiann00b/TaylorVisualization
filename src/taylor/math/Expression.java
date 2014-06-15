@@ -14,4 +14,8 @@ public abstract class Expression {
         
         return ((Expression)o).toString().equals(toString());
     }
+
+    public boolean isValid(double x1, double x2) {
+        return true;
+    }
 }

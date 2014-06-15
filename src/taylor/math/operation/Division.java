@@ -2,6 +2,7 @@ package taylor.math.operation;
 
 import taylor.math.Constant;
 import taylor.math.Expression;
+import taylor.math.Variable;
 
 public class Division extends Operation {
     
@@ -17,6 +18,17 @@ public class Division extends Operation {
             else
                 return e1.getY(x) > 0 ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
         return e1.getY(x) / e2.getY(x);
+    }
+    
+    @Override
+    public boolean isValid(double x1, double x2) {
+        if (e2 instanceof Variable) {
+            if (x1<0 && x2>0) {
+                System.out.println("No: " + this + " (" + x1 + "," + x2 + ")");
+                return false;
+            }
+        }
+        return true;
     }
     
     @Override

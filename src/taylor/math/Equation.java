@@ -140,6 +140,10 @@ public class Equation {
         return new Addition(e,getTaylorPolynomial(n-1,p));
     }
     
+    public boolean isValid(double x1, double x2) {
+        return exp.isValid(x1,x2);
+    }
+    
     @Override
     public String toString() {
         return exp.toString();

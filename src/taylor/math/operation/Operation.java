@@ -24,6 +24,11 @@ public abstract class Operation extends Expression {
     public Expression e1;
     public Expression e2;
     
+    @Override
+    public boolean isValid(double x1, double x2) {
+        return e1.isValid(x1,x2) && e2.isValid(x1,x2);
+    }
+    
     public Operation(Expression e1, Expression e2) {
         this.e1 = e1;
         this.e2 = e2;

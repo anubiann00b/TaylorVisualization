@@ -61,7 +61,8 @@ public class Calculator {
                 double step = (ex-sx)/1000.0;
                 for (double j=sx+step;j<=ex;j+=step) {
                     double y = fd.getY(j);
-                    drawLineScale(j,y,j-step,oldY);
+                    if (fd.isValid(j-step,j))
+                        drawLineScale(j,y,j-step,oldY);
                     oldY = y;
                 }
                 if (fd.exp.equals(new Constant(0)))

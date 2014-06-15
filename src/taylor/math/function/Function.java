@@ -24,6 +24,11 @@ public abstract class Function extends Expression {
     }
     
     @Override
+    public boolean isValid(double x1, double x2) {
+        return e.isValid(x1,x2);
+    }
+    
+    @Override
     public Expression simplify() {
         e = e.simplify();
         return this;
