@@ -1,0 +1,29 @@
+3+4+5
+3 4 + 5 +
+
+3+(4+5)*6
+3 4 5 + + 6 *
+
+3 + (4 + 5) * 6
+3 4 5 + 6 * +
+
+(300+23)*(43-21)/(84+7)
+300 23 + 43 21 - * 84 7 + /
+
+if (operand)
+    write
+if (end paren)
+    pop until open paren
+if (operator)
+    pop until top is lower precedence
+    push to stack
+if (done)
+    pop it all
+
+if (number)
+    add to stack
+if (operator)
+    pop last two
+    do operation
+    add to stack
+

@@ -53,15 +53,15 @@ public class Calculator {
         if (f != null) {
             Equation fd = new Equation(f);
             
-            for (int j=0;j<degree;j++) {
-                if (j != 0)
-                    fd = new Equation(f.getTaylorPolynomial(j,1));
-                g.setColor(colors[(j+1)%colors.length]);
+            for (int i=0;i<degree;i++) {
+                if (i != 0)
+                    fd = new Equation(f.getTaylorPolynomial(i,1));
+                g.setColor(colors[(i+1)%colors.length]);
                 double oldY = fd.getY(sx);
                 double step = (ex-sx)/1000.0;
-                for (double i=sx+step;i<=ex;i+=step) {
-                    double y = fd.getY(i);
-                    drawLineScale(i,y,i-step,oldY);
+                for (double j=sx+step;j<=ex;j+=step) {
+                    double y = fd.getY(j);
+                    drawLineScale(j,y,j-step,oldY);
                     oldY = y;
                 }
                 if (fd.exp.equals(new Constant(0)))
