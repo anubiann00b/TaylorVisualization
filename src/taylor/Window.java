@@ -205,6 +205,12 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
+        fieldEquation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldEquationActionPerformed(evt);
+            }
+        });
+
         fieldPoint.setText("0");
         fieldPoint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,10 +286,17 @@ public class Window extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGraphActionPerformed
-        calc.setEquation(fieldEquation.getText());
+    
+    public void submitEquation() {
+        String s = fieldEquation.getText();
+        if ("".equals(s))
+            return;
+        calc.setEquation(s);
         repaint();
+    }
+    
+    private void buttonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGraphActionPerformed
+        submitEquation();
     }//GEN-LAST:event_buttonGraphActionPerformed
 
     private void boxAxisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAxisActionPerformed
@@ -358,6 +371,10 @@ public class Window extends javax.swing.JFrame {
             calc.point = d;
         } catch (NumberFormatException e) { }
     }//GEN-LAST:event_fieldPointPropertyChange
+
+    private void fieldEquationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldEquationActionPerformed
+        submitEquation();
+    }//GEN-LAST:event_fieldEquationActionPerformed
     
     public void setField(double d) {
         fieldPoint.setText(Double.toString(d));
