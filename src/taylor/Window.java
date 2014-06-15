@@ -7,11 +7,13 @@
 package taylor;
 
 import java.awt.Graphics;
-import java.awt.KeyEventDispatcher;
-import java.awt.KeyboardFocusManager;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.DocumentEvent;
@@ -42,23 +44,21 @@ public class Window extends JFrame {
             @Override public void removeUpdate(DocumentEvent e) { fieldPointEvent(); }
             @Override public void changedUpdate(DocumentEvent e) { fieldPointEvent(); }
         });
-        
-        KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-        manager.addKeyEventDispatcher(new KeyEventDispatcher() {
+        Action action = new AbstractAction("help") {
             @Override
-            public boolean dispatchKeyEvent(KeyEvent e) {
-                if (e.getKeyCode()==KeyEvent.VK_F1 && e.getID()==KeyEvent.KEY_PRESSED)
-                    displayHelp();
-                return true;
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("asdf");
+                displayHelp();
             }
-        });
+        };
+        KeyStroke keyStroke = KeyStroke.getKeyStroke("F1");
+        buttonHelp.getActionMap().put("help",action);
+        buttonHelp.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(keyStroke,"help");
     }
     
     public void fieldPointEvent() {
-        System.out.println("Action: " + fieldPoint.getText());
         try {
             double d = Double.parseDouble(fieldPoint.getText());
-            System.out.println("Setting point: " + d);
             calc.point = d;
             repaint();
         } catch (NumberFormatException e) { }
@@ -228,16 +228,6 @@ public class Window extends JFrame {
         });
 
         fieldPoint.setText("0");
-        fieldPoint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldPointActionPerformed(evt);
-            }
-        });
-        fieldPoint.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                fieldPointPropertyChange(evt);
-            }
-        });
 
         jLabel2.setText("Point:");
 
@@ -388,22 +378,6 @@ public class Window extends JFrame {
         calc.degree = sliderDegree.getValue();
         repaint();
     }//GEN-LAST:event_sliderDegreeMouseReleased
-
-    private void fieldPointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPointActionPerformed
-        System.out.print("Action: " + fieldPoint.getText());
-        try {
-            double d = Double.parseDouble(fieldPoint.getText());
-            calc.point = d;
-        } catch (NumberFormatException e) { }
-    }//GEN-LAST:event_fieldPointActionPerformed
-
-    private void fieldPointPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fieldPointPropertyChange
-        System.out.print("Action: " + fieldPoint.getText());
-        try {
-            double d = Double.parseDouble(fieldPoint.getText());
-            calc.point = d;
-        } catch (NumberFormatException e) { }
-    }//GEN-LAST:event_fieldPointPropertyChange
 
     private void fieldEquationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldEquationActionPerformed
         submitEquation();
