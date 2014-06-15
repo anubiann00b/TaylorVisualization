@@ -7,6 +7,8 @@
 package taylor;
 
 import java.awt.Graphics;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.DocumentEvent;
@@ -16,7 +18,7 @@ import javax.swing.event.DocumentListener;
  *
  * @author Shreyas
  */
-public class Window extends javax.swing.JFrame {
+public class Window extends JFrame {
     
     private Calculator calc;
     
@@ -77,6 +79,7 @@ public class Window extends javax.swing.JFrame {
         fieldEquation = new javax.swing.JFormattedTextField();
         fieldPoint = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        buttonHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -225,6 +228,13 @@ public class Window extends javax.swing.JFrame {
 
         jLabel2.setText("Point:");
 
+        buttonHelp.setText("Help");
+        buttonHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHelpActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,25 +247,30 @@ public class Window extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boxAxis)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boxCoords)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boxShow))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonGraph)
-                            .addComponent(fieldEquation, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sliderDegree, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
-                        .addGap(0, 5, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(fieldPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(boxAxis)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boxCoords)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boxShow))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buttonGraph)
+                                    .addComponent(fieldEquation, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sliderDegree, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
+                                .addGap(0, 5, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonHelp))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,8 +295,13 @@ public class Window extends javax.swing.JFrame {
                             .addComponent(jLabel1)))
                     .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonHelp))))
         );
 
         pack();
@@ -375,6 +395,14 @@ public class Window extends javax.swing.JFrame {
     private void fieldEquationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldEquationActionPerformed
         submitEquation();
     }//GEN-LAST:event_fieldEquationActionPerformed
+
+    private void buttonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHelpActionPerformed
+        displayHelp();
+    }//GEN-LAST:event_buttonHelpActionPerformed
+    
+    public void displayHelp() {
+        JOptionPane.showMessageDialog(this, "Help contents here.", "Help", JOptionPane.PLAIN_MESSAGE);
+    }
     
     public void setField(double d) {
         fieldPoint.setText(Double.toString(d));
@@ -385,6 +413,7 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JCheckBox boxCoords;
     private javax.swing.JCheckBox boxShow;
     private javax.swing.JButton buttonGraph;
+    private javax.swing.JButton buttonHelp;
     private javax.swing.JFormattedTextField fieldEquation;
     private javax.swing.JTextField fieldPoint;
     private javax.swing.JLabel jLabel1;
