@@ -12,7 +12,10 @@ public class Division extends Operation {
     @Override
     public double getY(double x) {
         if (e2.getY(x) == 0)
-            return e1.getY(x) > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            if (e1.getY(x) == 0)
+                return Double.NaN;
+            else
+                return e1.getY(x) > 0 ? Double.POSITIVE_INFINITY : Double.NEGATIVE_INFINITY;
         return e1.getY(x) / e2.getY(x);
     }
     

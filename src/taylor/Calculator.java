@@ -71,6 +71,9 @@ public class Calculator {
     }
     
     public void drawLineScale(double x1, double y1, double x2, double y2) {
+        if (y1==Double.NaN || y2==Double.NaN || y1==Double.POSITIVE_INFINITY || y2==Double.POSITIVE_INFINITY
+                || y1==Double.NEGATIVE_INFINITY || y2==Double.NEGATIVE_INFINITY)
+            return;
         g.drawLine((int)((x1-sx)*w/(ex-sx)),(int)(h-(y1-sy)*h/(ey-sy)),
                 (int)((x2-sx)*w/(ex-sx)),(int)(h-(y2-sy)*h/(ey-sy)));
     }
