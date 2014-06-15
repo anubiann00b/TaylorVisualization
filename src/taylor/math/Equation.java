@@ -116,7 +116,7 @@ public class Equation {
         exp = exp.simplify();
     }
     
-    public Expression getTaylorPolynomial(int n, int p) {
+    public Expression getTaylorPolynomial(int n, double p) {
         if (n==0)
             return new Constant(exp.getY(p));
         
@@ -124,19 +124,19 @@ public class Equation {
             for (int i=0;i<n;i++)
                 d = d.derive();
         Expression e = 
-                    new Multiplication (
-                        new Division (
-                            new Constant(d.getY(p)),
-                            new Constant(factorial(n))
-                        ),
-                        new Exponent (
-                            new Subtraction (
-                                new Variable(1),
-                                new Constant(p)
-                            ),
-                            new Constant(n)
-                        )
-                    );
+            new Multiplication (
+                new Division (
+                    new Constant(d.getY(p)),
+                    new Constant(factorial(n))
+                ),
+                new Exponent (
+                    new Subtraction (
+                        new Variable(1),
+                        new Constant(p)
+                    ),
+                    new Constant(n)
+                )
+            );
         return new Addition(e,getTaylorPolynomial(n-1,p));
     }
     

@@ -18,6 +18,7 @@ public class Calculator {
     public boolean coords = true;
     
     public int degree = 1;
+    public double point = 0;
     
     public double sx = -10;
     public double sy = -10;
@@ -65,7 +66,7 @@ public class Calculator {
             
             for (int i=0;i<degree;i++) {
                 if (i != 0)
-                    fd = new Equation(f.getTaylorPolynomial(i,1));
+                    fd = new Equation(f.getTaylorPolynomial(i,point));
                 g.setColor(colors[(i+1)%colors.length]);
                 double oldY = fd.getY(sx);
                 double step = (ex-sx)/w;

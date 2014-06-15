@@ -9,6 +9,8 @@ package taylor;
 import java.awt.Graphics;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -30,6 +32,21 @@ public class Window extends javax.swing.JFrame {
         }
         calc = new Calculator();
         initComponents();
+        fieldPoint.getDocument().addDocumentListener(new DocumentListener() {
+            @Override public void insertUpdate(DocumentEvent e) { fieldPointEvent(); }
+            @Override public void removeUpdate(DocumentEvent e) { fieldPointEvent(); }
+            @Override public void changedUpdate(DocumentEvent e) { fieldPointEvent(); }
+        });
+    }
+    
+    public void fieldPointEvent() {
+        System.out.println("Action: " + fieldPoint.getText());
+        try {
+            double d = Double.parseDouble(fieldPoint.getText());
+            System.out.println("Setting point: " + d);
+            calc.point = d;
+            repaint();
+        } catch (NumberFormatException e) { }
     }
     
     @Override
@@ -58,6 +75,8 @@ public class Window extends javax.swing.JFrame {
         boxGrid = new javax.swing.JCheckBox();
         boxCoords = new javax.swing.JCheckBox();
         fieldEquation = new javax.swing.JFormattedTextField();
+        fieldPoint = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,11 +122,11 @@ public class Window extends javax.swing.JFrame {
         sliderDegree.setSnapToTicks(true);
         sliderDegree.setValue(1);
         sliderDegree.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                sliderDegreeMouseReleased(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sliderDegreeMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                sliderDegreeMouseReleased(evt);
             }
         });
         sliderDegree.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -185,6 +204,20 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
+        fieldPoint.setText("0");
+        fieldPoint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldPointActionPerformed(evt);
+            }
+        });
+        fieldPoint.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fieldPointPropertyChange(evt);
+            }
+        });
+
+        jLabel2.setText("Point:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,22 +225,29 @@ public class Window extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
                     .addComponent(panelGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonGraph)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sliderDegree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fieldPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(boxAxis)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(boxCoords)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(boxGrid))
-                    .addComponent(fieldEquation, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonGraph)
+                            .addComponent(fieldEquation, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sliderDegree, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
+                        .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,13 +261,16 @@ public class Window extends javax.swing.JFrame {
                         .addComponent(buttonGraph)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(sliderDegree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(boxAxis)
-                            .addComponent(boxCoords)
-                            .addComponent(boxGrid)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sliderDegree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(boxAxis)
+                                    .addComponent(boxGrid)
+                                    .addComponent(boxCoords)
+                                    .addComponent(jLabel2)
+                                    .addComponent(fieldPoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1)))
                     .addComponent(panelGraph, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
@@ -299,13 +342,35 @@ public class Window extends javax.swing.JFrame {
         repaint();
     }//GEN-LAST:event_sliderDegreeMouseReleased
 
+    private void fieldPointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPointActionPerformed
+        System.out.print("Action: " + fieldPoint.getText());
+        try {
+            double d = Double.parseDouble(fieldPoint.getText());
+            calc.point = d;
+        } catch (NumberFormatException e) { }
+    }//GEN-LAST:event_fieldPointActionPerformed
+
+    private void fieldPointPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fieldPointPropertyChange
+        System.out.print("Action: " + fieldPoint.getText());
+        try {
+            double d = Double.parseDouble(fieldPoint.getText());
+            calc.point = d;
+        } catch (NumberFormatException e) { }
+    }//GEN-LAST:event_fieldPointPropertyChange
+    
+    public void setField(double d) {
+        fieldPoint.setText(Double.toString(d));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAxis;
     private javax.swing.JCheckBox boxCoords;
     private javax.swing.JCheckBox boxGrid;
     private javax.swing.JButton buttonGraph;
     private javax.swing.JFormattedTextField fieldEquation;
+    private javax.swing.JTextField fieldPoint;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelGraph;
     private javax.swing.JSlider sliderDegree;
