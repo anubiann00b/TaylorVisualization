@@ -22,12 +22,9 @@ public class Division extends Operation {
     
     @Override
     public boolean isValid(double x1, double x2) {
-        if (e2 instanceof Variable) {
-            if (x1<0 && x2>0) {
-                System.out.println("No: " + this + " (" + x1 + "," + x2 + ")");
+        if (e2 instanceof Variable)
+            if (x1<0 && x2>0)
                 return false;
-            }
-        }
         return true;
     }
     

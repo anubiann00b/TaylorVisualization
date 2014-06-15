@@ -2,6 +2,7 @@ package taylor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.text.DecimalFormat;
 import javax.swing.JTable;
 import taylor.math.Constant;
 import taylor.math.Equation;
@@ -28,6 +29,8 @@ public class Calculator {
     public int w;
     public int h;
     
+    public DecimalFormat df = new DecimalFormat("0.00");
+    
     public Color[] colors = { Color.black, Color.red, Color.blue, Color.green, Color.pink};
     
     public void setEquation(String newEquation) { equation = newEquation; }
@@ -47,6 +50,13 @@ public class Calculator {
             drawLineScale(sx,0,ex,0);
         }
         
+        if (coords) {
+            g.drawString(df.format(sx),5,h/2);
+            g.drawString(df.format(sy),w/2,h-5);
+            g.drawString(df.format(ex),w-30,h/2);
+            g.drawString(df.format(ey),w/2,10);
+        }
+        
         if (equation != null)
             f = new Equation(equation);
         
@@ -58,7 +68,7 @@ public class Calculator {
                     fd = new Equation(f.getTaylorPolynomial(i,1));
                 g.setColor(colors[(i+1)%colors.length]);
                 double oldY = fd.getY(sx);
-                double step = (ex-sx)/1000.0;
+                double step = (ex-sx)/w;
                 for (double j=sx+step;j<=ex;j+=step) {
                     double y = fd.getY(j);
                     if (fd.isValid(j-step,j))
@@ -90,11 +100,11 @@ public class Calculator {
     public void update(JTable t) {
         double x = sx;
         for (int i=0;i<20;i++) {
-            t.setValueAt(x,i,0);
+            t.setValueAt(df.format(x),i,0);
             
             if (f != null) {
-                t.setValueAt(f.getY(x),i,1);
-                t.setValueAt(f.derive().getY(x),i,2);
+                t.setValueAt(df.format(f.getY(x)),i,1);
+                t.setValueAt(df.format(f.derive().getY(x)),i,2);
             }
             x+=tableStep;
         }
