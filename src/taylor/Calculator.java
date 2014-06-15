@@ -75,8 +75,16 @@ public class Calculator {
         if (y1==Double.NaN || y2==Double.NaN || y1==Double.POSITIVE_INFINITY || y2==Double.POSITIVE_INFINITY
                 || y1==Double.NEGATIVE_INFINITY || y2==Double.NEGATIVE_INFINITY)
             return;
-        g.drawLine((int)((x1-sx)*w/(ex-sx)),(int)(h-(y1-sy)*h/(ey-sy)),
-                (int)((x2-sx)*w/(ex-sx)),(int)(h-(y2-sy)*h/(ey-sy)));
+        
+        int nx1 = (int)((x1-sx)*w/(ex-sx));
+        int ny1 = (int)(h-(y1-sy)*h/(ey-sy));
+        int nx2 = (int)((x2-sx)*w/(ex-sx));
+        int ny2 = (int)(h-(y2-sy)*h/(ey-sy));
+        
+        if (nx1<0&&nx2<0 || ny1<0&&ny2<0 || nx1>w&&nx2>w || ny1>h||ny2>h)
+            return;
+        
+        g.drawLine(nx1,ny1,nx2,ny2);
     }
     
     public void update(JTable t) {
