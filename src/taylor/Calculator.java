@@ -30,7 +30,7 @@ public class Calculator {
     public int w;
     public int h;
     
-    public DecimalFormat df = new DecimalFormat("0.00");
+    public DecimalFormat df = new DecimalFormat("0.000");
     
     public Color[] colors = { Color.black, Color.red, Color.blue, Color.green, Color.pink};
     
@@ -54,7 +54,7 @@ public class Calculator {
         if (coords) {
             g.drawString(df.format(sx),5,h/2);
             g.drawString(df.format(sy),w/2,h-5);
-            g.drawString(df.format(ex),w-30,h/2);
+            g.drawString(df.format(ex),w-35,h/2);
             g.drawString(df.format(ey),w/2,10);
         }
         
