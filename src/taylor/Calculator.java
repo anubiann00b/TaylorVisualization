@@ -121,6 +121,9 @@ public class Calculator {
     }
     
     public void zoom(int r) {
+        if (ey-sy+2*tableStep*r<=Double.MIN_NORMAL || ex-sx+2*tableStep*r<=Double.MIN_NORMAL)
+            if (r<0)
+                return;
         sx -= tableStep*r;
         sy -= tableStep*r;
         ex += tableStep*r;
