@@ -108,13 +108,16 @@ public class Calculator {
     }
     
     public void update(JTable t) {
+        
         double x = sx;
         for (int i=0;i<20;i++) {
             t.setValueAt(df.format(x),i,0);
             
             if (f != null) {
                 t.setValueAt(df.format(f.getY(x)),i,1);
-                t.setValueAt(df.format(f.derive().getY(x)),i,2);
+                Expression e = f.getTaylorPolynomial(degree,point);
+                if (e != null)
+                    t.setValueAt(df.format(f.getTaylorPolynomial(degree-1,point).getY(x)),i,2);
             }
             x+=tableStep;
         }
