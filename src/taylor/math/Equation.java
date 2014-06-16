@@ -121,8 +121,8 @@ public class Equation {
             return new Constant(exp.getY(p));
         
         Expression d = exp;
-            for (int i=0;i<n;i++)
-                d = d.derive();
+        for (int i=0;i<n;i++)
+            d = d.derive();
         Expression e = 
             new Multiplication (
                 new Division (
@@ -137,7 +137,15 @@ public class Equation {
                     new Constant(n)
                 )
             );
-        return new Addition(e,getTaylorPolynomial(n-1,p));
+        
+        if (!e.isValid(n,n))
+            return null;
+        
+        Expression e2 = getTaylorPolynomial(n-1,p);
+        if (e2 == null)
+            return null;
+        
+        return new Addition(e,e2);
     }
     
     public boolean isValid(double x1, double x2) {

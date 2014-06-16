@@ -25,6 +25,11 @@ public class Division extends Operation {
         if (e2 instanceof Variable)
             if (x1<0 && x2>0)
                 return false;
+        if (x1==x2) {
+            double y = getY(x1);
+            if (y==Double.POSITIVE_INFINITY || y==Double.NEGATIVE_INFINITY || y==Double.NaN)
+                return false;
+        }
         return true;
     }
     

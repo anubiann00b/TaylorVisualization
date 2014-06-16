@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import javax.swing.JTable;
 import taylor.math.Constant;
 import taylor.math.Equation;
+import taylor.math.Expression;
 
 public class Calculator {
     
@@ -65,8 +66,13 @@ public class Calculator {
             Equation fd = new Equation(f);
             
             for (int i=0;i<degree;i++) {
-                if (i != 0)
-                    fd = new Equation(f.getTaylorPolynomial(i,point));
+                if (i != 0) {
+                    Expression e = f.getTaylorPolynomial(i,point);
+                    if (e == null)
+                        continue;
+                    fd = new Equation(e);
+                }
+                
                 if (!show)
                     if (i!=degree-1 && i!=0)
                         continue;
