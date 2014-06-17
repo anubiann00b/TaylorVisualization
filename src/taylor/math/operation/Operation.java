@@ -5,20 +5,17 @@ import taylor.math.Expression;
 public abstract class Operation extends Expression {
 
     public static Expression getOperation(String op, Expression e1, Expression e2) {
-        switch(op) {
-            case "+":
-                return new Addition(e1,e2);
-            case "*":
-                return new Multiplication(e1,e2);
-            case "-":
-                return new Subtraction(e1,e2);
-            case "/":
-                return new Division(e1,e2);
-            case "^":
-                return new Exponent(e1,e2);
-            default:
-                return null;
-        }
+        if (op.equals("+"))
+            return new Addition(e1,e2);
+        if (op.equals("*"))
+            return new Multiplication(e1,e2);
+        if (op.equals("-"))
+            return new Subtraction(e1,e2);
+        if (op.equals("/"))
+            return new Division(e1,e2);
+        if (op.equals("^"))
+            return new Exponent(e1,e2);
+        return null;
     }
     
     public Expression e1;

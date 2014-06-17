@@ -27,10 +27,16 @@ public class Window extends JFrame {
     public Window() {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (ClassNotFoundException | InstantiationException
-                | IllegalAccessException| UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException e) {
+            System.out.println("Error loading look and feel: " + e);
+        } catch (InstantiationException e) {
+            System.out.println("Error loading look and feel: " + e);
+        } catch (IllegalAccessException e) {
+            System.out.println("Error loading look and feel: " + e);
+        } catch (UnsupportedLookAndFeelException e) {
             System.out.println("Error loading look and feel: " + e);
         }
+        
         calc = new Calculator();
         initComponents();
         
