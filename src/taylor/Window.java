@@ -33,6 +33,7 @@ public class Window extends JFrame {
         }
         calc = new Calculator();
         initComponents();
+        
         fieldPoint.getDocument().addDocumentListener(new DocumentListener() {
             @Override public void insertUpdate(DocumentEvent e) { fieldPointEvent(); }
             @Override public void removeUpdate(DocumentEvent e) { fieldPointEvent(); }
@@ -41,7 +42,6 @@ public class Window extends JFrame {
         Action action = new AbstractAction("help") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("asdf");
                 displayHelp();
             }
         };
