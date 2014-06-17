@@ -123,6 +123,7 @@ public class Equation {
         Expression d = exp;
         for (int i=0;i<n;i++)
             d = d.derive();
+        d.simplify();
         Expression e = 
             new Multiplication (
                 new Division (

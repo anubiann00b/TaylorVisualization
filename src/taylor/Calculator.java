@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.text.DecimalFormat;
 import javax.swing.JTable;
-import taylor.math.Constant;
 import taylor.math.Equation;
 import taylor.math.Expression;
 
@@ -85,8 +84,6 @@ public class Calculator {
                         drawLineScale(j,y,j-step,oldY);
                     oldY = y;
                 }
-                if (fd.exp.equals(new Constant(0)))
-                    break;
             }
         }
     }
