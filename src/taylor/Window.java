@@ -383,7 +383,13 @@ public class Window extends JFrame {
     }//GEN-LAST:event_buttonHelpActionPerformed
     
     public void displayHelp() {
-        JOptionPane.showMessageDialog(this, "Help contents here.", "Help", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this,"Enter an equation to graph in the box.\n"
+                + "Click 'Graph' or press enter to graph.\n"
+                + "Use the slider to choose the degree of the polynomial.\n"
+                + "Enter the point to estimate at.\n"
+                + "The 'Show All' button toggles between graphing all series\n"
+                + "    and graphing only the highest degree series.\n"
+                + "Drag and scroll to modify the viewport on the graph.\n","Help",JOptionPane.PLAIN_MESSAGE);
     }
     
     public void setField(double d) {
